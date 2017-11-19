@@ -1,5 +1,7 @@
 package org.usfirst.frc.team6014.robot;
 
+import edu.wpi.first.wpilibj.VictorSP;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -7,6 +9,10 @@ package org.usfirst.frc.team6014.robot;
  * floating around.
  */
 public class RobotMap {
+	public static VictorSP frontLeftMotor = new VictorSP(0);
+	public static VictorSP frontRightMotor = new VictorSP(1);
+	public static VictorSP rearLeftMotor = new VictorSP(2);
+	public static VictorSP rearRightMotor = new VictorSP(3);
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
