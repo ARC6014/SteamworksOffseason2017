@@ -10,14 +10,41 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 	
 	XboxController xbox = new XboxController(0);
-	GenericHID.Hand directionStick = GenericHID.Hand.kRight; 
+	GenericHID.Hand directionStick = GenericHID.Hand.kRight;
+	double turboFactor = 1.5;
 	
 	public double getX() {
-		return xbox.getX(directionStick);
+		double rawSpeed = xbox.getX(directionStick) * this.getSpeed() / 2.0;
+		if (this.getTurboButton()) {
+			return Math.pow(rawSpeed, (1.0 / turboFactor));
+		} else {
+			return rawSpeed;
+		}
 	}
 	
 	public double getY() {
-		return xbox.getY(directionStick);
+		double rawSpeed = xbox.getY(directionStick) * this.getSpeed() / 2.0;
+		if (this.getTurboButton()) {
+			return Math.pow(rawSpeed, (1.0 / turboFactor));
+		} else {
+			return rawSpeed;
+		}
+	}
+	
+	public boolean getReverseButton() {
+		return xbox.getYButton();
+	}
+	
+	boolean getTurboButton() {
+		return xbox.getBumper(GenericHID.Hand.kRight);
+	}
+	
+	public boolean getClimbingButton() {
+		return xbox.getBumper(GenericHID.Hand.kLeft);
+	}
+	
+	double getSpeed() {
+		return xbox.getY(GenericHID.Hand.kLeft) + 1.0;
 	}
 	
 	//// CREATING BUTTONS
