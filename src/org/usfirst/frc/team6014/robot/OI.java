@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6014.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
@@ -9,6 +10,15 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 	
 	XboxController xbox = new XboxController(0);
+	GenericHID.Hand directionStick = GenericHID.Hand.kRight; 
+	
+	public double getX() {
+		return xbox.getX(directionStick);
+	}
+	
+	public double getY() {
+		return xbox.getY(directionStick);
+	}
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
