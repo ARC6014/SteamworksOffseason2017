@@ -12,7 +12,7 @@ public class OI {
 	public double getX() {
 		double rawSpeed = xbox.getX(directionStick) * this.getSpeed() / 2.0;
 		if (this.getTurboButton()) {
-			return Math.pow(rawSpeed, (1.0 / turboFactor));
+			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
 		} else {
 			return rawSpeed;
 		}
@@ -21,7 +21,7 @@ public class OI {
 	public double getY() {
 		double rawSpeed = xbox.getY(directionStick) * this.getSpeed() / 2.0;
 		if (this.getTurboButton()) {
-			return Math.pow(rawSpeed, (1.0 / turboFactor));
+			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
 		} else {
 			return rawSpeed;
 		}
