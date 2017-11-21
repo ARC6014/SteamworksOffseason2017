@@ -9,8 +9,8 @@ public class OI {
 	GenericHID.Hand directionStick = GenericHID.Hand.kRight;
 	double turboFactor = 1.5;
 	
-	public double getX() {
-		double rawSpeed = xbox.getX(directionStick) * this.getSpeed() / 2.0;
+	double adjustSpeed(double rawInput) {
+		double rawSpeed = rawInput * this.getSpeed() / 2.0;
 		if (this.getTurboButton()) {
 			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
 		} else {
@@ -18,13 +18,20 @@ public class OI {
 		}
 	}
 	
+	double getRawX() {
+		return xbox.getX(directionStick);
+	}
+	
+	double getRawY() {
+		return xbox.getY(directionStick);
+	}
+	
+	public double getX() {
+		return this.adjustSpeed(this.getRawX());
+	}
+	
 	public double getY() {
-		double rawSpeed = xbox.getY(directionStick) * this.getSpeed() / 2.0;
-		if (this.getTurboButton()) {
-			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
-		} else {
-			return rawSpeed;
-		}
+		return this.adjustSpeed(this.getRawY());
 	}
 	
 	public boolean getReverseButton() {
