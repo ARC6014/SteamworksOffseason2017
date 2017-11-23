@@ -13,13 +13,24 @@ public class Drive extends Subsystem {
 	
 	RobotDrive robotDrive = RobotMap.robotDrive;
 	
-	public void drive() {
-		this.robotDrive.arcadeDrive(Robot.oi.getY(), Robot.oi.getX());
-	}
+	private static final VictorSP frontLeft = RobotMap.frontLeftMotor;
+	private static final VictorSP frontRight = RobotMap.frontRightMotor;
+	private static final VictorSP rearLeft = RobotMap.rearLeftMotor;
+	private static final VictorSP rearRight = RobotMap.rearRightMotor;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        // setDefaultCommand(new Teleop()); not ready yet
     }
+
+    public void arcadeDrive(double xAxis, double yAxis) {
+		double yInput = Math.sin(yAxis*Math.PI/2);
+		robotDrive4.arcadeDrive(yInput, xAxis);
+	}
+	
+    public void setSensetivity(double sensetivity) {
+	    robotDrive.setMaxOutput(sensetivity);
+    }
+	
 }
 
