@@ -10,7 +10,7 @@ public class OI {
 	double turboFactor = 1.5;
 	
 	double adjustSpeed(double rawInput) {
-		double rawSpeed = rawInput * this.getSpeed() / 2.0;
+		double rawSpeed = rawInput * this.getSpeed();
 		if (this.getTurboButton()) {
 			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
 		} else {
@@ -47,7 +47,7 @@ public class OI {
 	}
 	
 	double getSpeed() {
-		return xbox.getY(GenericHID.Hand.kLeft) + 1.0;
+		return (xbox.getY(GenericHID.Hand.kLeft) + 1.0)/2.0;
 	}
 	
 	//// TRIGGERING COMMANDS WITH BUTTONS
