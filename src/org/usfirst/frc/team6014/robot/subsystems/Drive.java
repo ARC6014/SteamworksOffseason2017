@@ -28,8 +28,8 @@ public class Drive extends Subsystem {
 		robotDrive4.arcadeDrive(yInput, xAxis);
 	}
 	
-    public void setSensetivity(double sensetivity) {
-	    robotDrive.setMaxOutput(sensetivity);
+    public void setSensetivity(double sensitivity) {
+	    robotDrive.setMaxOutput(sensitivity);
     }
 	
 }
