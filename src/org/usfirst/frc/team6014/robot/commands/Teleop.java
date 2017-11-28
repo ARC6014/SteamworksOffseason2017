@@ -7,10 +7,11 @@ import org.usfirst.frc.team6014.robot.Robot;
 /**
  *
  */
-public class ExampleCommand extends Command {
-	public ExampleCommand() {
+public class Teleop extends Command {
+	public Teleop() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.exampleSubsystem);
+		requires(Robot.drive);
+		requires(Robot.climber);
 	}
 
 	// Called just before this Command runs the first time
@@ -21,6 +22,10 @@ public class ExampleCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.drive.arcadeDrive(Robot.oi.getX(),Robot.oi.getY());
+		if(Robot.oi.getClimbingButton()) {
+			Robot.climber.moveClimber(1.0);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
