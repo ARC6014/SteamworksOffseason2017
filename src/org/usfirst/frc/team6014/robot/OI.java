@@ -8,9 +8,11 @@ public class OI {
 	XboxController xbox = new XboxController(0);
 	GenericHID.Hand directionStick = GenericHID.Hand.kRight;
 	double turboFactor = 1.5;
+	double reverseFactor = 1.0;
+	boolean prevReverseButton = false;
 	
 	double adjustSpeed(double rawInput) {
-		double rawSpeed = rawInput * this.getSpeed();
+		double rawSpeed = rawInput * this.getSpeed() * this.getReverseFactor();
 		if (this.getTurboButton()) {
 			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
 		} else {
@@ -34,8 +36,17 @@ public class OI {
 		return this.adjustSpeed(this.getRawY());
 	}
 	
-	public boolean getReverseButton() {
+	boolean getReverseButton() {
 		return xbox.getYButton();
+	}
+	
+	double getReverseFactor() {
+		boolean curReverseButton = getReverseButton();
+		if(curReverseButton && !prevReverseButton) {
+			reverseFactor*=-1.0;
+		}
+		prevReverseButton = curReverseButton;
+		return reverseFactor;
 	}
 	
 	boolean getTurboButton() {
