@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team6014.robot.commands.Teleop;
 import org.usfirst.frc.team6014.robot.subsystems.Climber;
 import org.usfirst.frc.team6014.robot.subsystems.Drive;
-import org.usfirst.frc.team6014.robot.commands.ExampleCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +23,7 @@ public class Robot extends IterativeRobot {
 
 	public static final Drive drive = new Drive();
 	public static final Climber climber = new Climber();
+	public static final Teleop teleop = new Teleop();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -35,7 +36,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -98,6 +99,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Scheduler.getInstance().add(new Teleop());
 	}
 
 	/**
