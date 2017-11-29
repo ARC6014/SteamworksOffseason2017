@@ -15,11 +15,6 @@ public class Drive extends Subsystem {
 	
 	RobotDrive robotDrive = RobotMap.robotDrive;
 	
-	private static final VictorSP frontLeft = RobotMap.frontLeftMotor;
-	private static final VictorSP frontRight = RobotMap.frontRightMotor;
-	private static final VictorSP rearLeft = RobotMap.rearLeftMotor;
-	private static final VictorSP rearRight = RobotMap.rearRightMotor;
-	
     @Override
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -27,8 +22,7 @@ public class Drive extends Subsystem {
     }
 
     public void arcadeDrive(double xAxis, double yAxis) {
-		//double yInput = Math.sin(yAxis*Math.PI/2);
-		robotDrive.arcadeDrive(yAxis, xAxis);
+		robotDrive.arcadeDrive(-yAxis, xAxis);
 	}
 }
 

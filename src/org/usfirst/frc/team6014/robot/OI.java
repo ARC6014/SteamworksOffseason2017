@@ -7,7 +7,7 @@ public class OI {
 	
 	XboxController xbox = new XboxController(0);
 	GenericHID.Hand directionStick = GenericHID.Hand.kRight;
-	double turboFactor = 1.5;
+	double turboFactor = 3.0;
 	double reverseFactor = 1.0;
 	boolean prevReverseButton = false;
 	

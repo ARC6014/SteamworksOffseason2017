@@ -25,6 +25,8 @@ public class Teleop extends Command {
 		Robot.drive.arcadeDrive(Robot.oi.getX(),Robot.oi.getY());
 		if(Robot.oi.getClimbingButton()) {
 			Robot.climber.moveClimber(1.0);
+		} else {
+			Robot.climber.moveClimber(0.0);
 		}
 	}
 
