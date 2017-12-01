@@ -22,7 +22,7 @@ public class Drive extends Subsystem {
     }
 
     public void arcadeDrive(double xAxis, double yAxis) {
-		robotDrive.arcadeDrive(-yAxis, xAxis);
+		robotDrive.arcadeDrive(yAxis, -1.0*xAxis);
 	}
 }
 

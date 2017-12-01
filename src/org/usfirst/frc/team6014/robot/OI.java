@@ -12,7 +12,7 @@ public class OI {
 	boolean prevReverseButton = false;
 	
 	double adjustSpeed(double rawInput) {
-		double rawSpeed = rawInput * this.getSpeed() * this.getReverseFactor();
+		double rawSpeed = rawInput * this.getSpeed();
 		if (this.getTurboButton()) {
 			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
 		} else {
@@ -25,7 +25,7 @@ public class OI {
 	}
 	
 	double getRawY() {
-		return xbox.getY(directionStick);
+		return xbox.getY(directionStick)*this.getReverseFactor();
 	}
 	
 	public double getX() {
@@ -58,7 +58,7 @@ public class OI {
 	}
 	
 	double getSpeed() {
-		return (xbox.getY(GenericHID.Hand.kLeft) + 1.0)/2.0;
+		return ((-0.6*xbox.getY(GenericHID.Hand.kLeft) + 0.6)/2.0)+0.4;
 	}
 	
 	//// TRIGGERING COMMANDS WITH BUTTONS
