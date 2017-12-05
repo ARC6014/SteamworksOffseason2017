@@ -14,7 +14,7 @@ public class OI {
 	double adjustSpeed(double rawInput) {
 		double rawSpeed = rawInput * this.getSpeed();
 		if (this.getTurboButton()) {
-			return Math.signum(rawSpeed) * Math.pow(rawSpeed, (1.0 / turboFactor));
+			return Math.signum(rawSpeed) * Math.pow(Math.abs(rawSpeed), (1.0 / turboFactor));
 		} else {
 			return rawSpeed;
 		}

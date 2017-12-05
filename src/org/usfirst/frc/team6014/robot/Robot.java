@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team6014.robot.commands.AutoDrive;
+import org.usfirst.frc.team6014.robot.commands.AutoLeft;
+import org.usfirst.frc.team6014.robot.commands.AutoMiddle;
+import org.usfirst.frc.team6014.robot.commands.AutoRight;
 import org.usfirst.frc.team6014.robot.commands.Teleop;
 import org.usfirst.frc.team6014.robot.subsystems.Climber;
 import org.usfirst.frc.team6014.robot.subsystems.Drive;
@@ -37,7 +41,9 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Middle (Base 2)", new AutoMiddle());
+		chooser.addObject("Left (Base 1)", new AutoLeft());
+		chooser.addObject("Right (Base 3)", new AutoRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -70,7 +76,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
